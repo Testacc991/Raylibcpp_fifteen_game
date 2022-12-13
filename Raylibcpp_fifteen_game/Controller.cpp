@@ -1,5 +1,7 @@
 #include "Controller.h"
 #include "Model.h"
+#include <algorithm>
+#include <random>
 int Controller::Logic::check()
 {
     for (auto it = _board->cells.begin(); it != _board->cells.end(); ++it)
@@ -13,6 +15,7 @@ int Controller::Logic::check()
 }
 void Controller::Logic::fillBoard()
 {
+
     int counter = 1;
     for (float y = 0.0; y < _board->boardsize.y; y += _board->cellsize.y)
     {
@@ -27,9 +30,11 @@ void Controller::Logic::fillBoard()
             counter++;
         }
     }
+    auto rng = std::default_random_engine{};
+    std::shuffle(std::begin(_board->cells), std::end(_board->cells), rng);
 }
 
-void Controller::Logic::updateboard()
+void Controller::Logic::drawboard()
 {
     for (auto it = _board->cells.begin(); it != _board->cells.end(); ++it)
     {
@@ -45,7 +50,9 @@ void Controller::Logic::updatepointer()
 
 void Controller::Logic::doLogic()
 {
-    updateboard();
     updatepointer();
 }
-
+void Controller::Logic::doDrawing()
+{
+    drawboard();
+}

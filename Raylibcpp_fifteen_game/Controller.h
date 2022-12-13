@@ -12,12 +12,12 @@ namespace Controller//All related to logic
         int check();
         //Change configuration
         void changeConf();
-        //Revord configuration 
+        //Revcord configuration 
         void recordConf();
         //Check if configuration is correct
         void checkConf();
         
-        void updateboard();
+        void drawboard();
         void updatepointer();
     public:
         Logic(View::UI* ui, Mod::Board* board)
@@ -27,5 +27,6 @@ namespace Controller//All related to logic
         }
         void fillBoard();
         void doLogic();//program update
+        void doDrawing();
     };
 }
