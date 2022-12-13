@@ -29,16 +29,23 @@ void Controller::Logic::fillBoard()
     }
 }
 
-void Controller::Logic::drawboard()
+void Controller::Logic::updateboard()
 {
     for (auto it = _board->cells.begin(); it != _board->cells.end(); ++it)
     {
         _ui->drawcell(*it);
     }
 }
+void Controller::Logic::updatepointer()
+{
+    _board->pointer.x = GetMouseX() - _board->pointer.width / 2;
+    _board->pointer.y = GetMouseY() - _board->pointer.width / 2;
+    _ui->drawpointer(*_board);
+}
 
 void Controller::Logic::doLogic()
 {
-    drawboard();
+    updateboard();
+    updatepointer();
 }
 

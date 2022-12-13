@@ -13,7 +13,7 @@ namespace Mod//Everything related to data
         bool exists;
 
         raylib::Text numtext;
-        raylib::Rectangle rect;
+        raylib::Rectangle rec;
 
         Vector2 cellsize;
         Vector2 position;
@@ -25,9 +25,9 @@ namespace Mod//Everything related to data
             selected(selected),
             exists(exists),
             number(number),
-
+            //Text and cell rectangle initialization
             numtext(std::to_string(number), 80, BLACK),
-            rect(position, cellsize)
+            rec(position, cellsize)
         {
             //empty
         }
@@ -37,18 +37,17 @@ namespace Mod//Everything related to data
     class Board
     {
     public:
-        
-        
         std::vector <Cell> cells;
-        
+        raylib::Rectangle pointer;
         Vector2 boardposition;
         Vector2 boardsize;
         Vector2 cellsize;
-        Board(Vector2 boardposition, Vector2 boardsize, Vector2 cellsize) :
-            
+        Board(raylib::Vector2 boardposition, raylib::Vector2 boardsize, raylib::Vector2 cellsize) :
             boardposition(boardposition),
             boardsize(boardsize),
-            cellsize(cellsize)
+            cellsize(cellsize),
+            //Pointer initialization
+            pointer({0,0},{10,10})
         {
             //empty
         };

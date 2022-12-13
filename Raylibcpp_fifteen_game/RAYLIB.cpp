@@ -28,7 +28,6 @@ int main() {
             window.ClearBackground(RAYWHITE);
             //textColor.DrawText("Congrats! You created your first window!", 190, 200, 20);
             logic.doLogic();
-            ui.return_pressed_cell();
         }
         EndDrawing();
         //----------------------------------------------------------------------------------

@@ -16,8 +16,9 @@ namespace Controller//All related to logic
         void recordConf();
         //Check if configuration is correct
         void checkConf();
-        //Reset configuration
-        void drawboard();
+        
+        void updateboard();
+        void updatepointer();
     public:
         Logic(View::UI* ui, Mod::Board* board)
         {
@@ -25,6 +26,6 @@ namespace Controller//All related to logic
             _board = board;
         }
         void fillBoard();
-        void doLogic();
+        void doLogic();//program update
     };
 }
