@@ -12,8 +12,6 @@ namespace View //All related to interface
 
         void drawcell(Mod::Cell& cell);
 
-        void drawpointer(Mod::Board& board);
-
         /*void drawendgame(bool visibility, int& screenWidth, int& screenHeight);
 
         void drawrepeat(bool visibility, int& screenWidth, int& screenHeight);*/

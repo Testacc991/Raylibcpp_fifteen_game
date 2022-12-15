@@ -11,7 +11,7 @@ int main() {
     View::UI ui;
     Mod::Board board({ 10,10 }, { 400,400 },{100,100});
     Controller::Logic logic(&ui, &board);
-    logic.fillBoard();
+    logic.fill_board();
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
     

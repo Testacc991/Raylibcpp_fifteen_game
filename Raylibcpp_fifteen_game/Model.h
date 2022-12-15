@@ -10,17 +10,18 @@ namespace Mod//Everything related to data
     public:
         int number;
         bool exists;
+        bool pressed;
 
         raylib::Text numtext;
         raylib::Rectangle rec;
 
         Vector2 cellsize;
         Vector2 position;
-
-        Cell(Vector2 position, Vector2 cellsize, bool exists, int number) :
+        
+        Cell(Vector2 position, Vector2 cellsize, bool exists,bool pressed, int number) :
             position(position),
             cellsize(cellsize),
-
+            pressed(pressed),
             exists(exists),
             number(number),
 
@@ -29,6 +30,19 @@ namespace Mod//Everything related to data
             rec(position, cellsize)
         {
             //empty
+        }
+        Cell& operator=(const Cell& other) {
+            if (this == &other) {
+                return *this;
+            }
+
+            position = other.position;
+            cellsize = other.cellsize;
+            pressed = other.pressed;
+            exists = other.exists;
+            number = other.number;
+
+            return *this;
         }
 
     };

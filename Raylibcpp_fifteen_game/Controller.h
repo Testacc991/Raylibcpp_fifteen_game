@@ -12,13 +12,15 @@ namespace Controller//All related to logic
         Mod::Board* _board;
         //Check if there pressed cell
         bool is_cell_pressed(raylib::Vector2 pointer, Mod::Cell& cell);
-        
-        void check();
-        //Check can cell be moved
-        bool is_cell16_near();
-        
-        void drawboard();
-        void updatepointer();
+        void check_pressed();
+        //------------------------------------------------------------------
+        //Functions to swap
+        Mod::Cell& find_16cell();
+        void try_swap_cell16_near();
+        void swap(Mod::Cell cell1, Mod::Cell cell2);
+        //------------------------------------------------------------------
+        void draw_board();
+        void update_pointer();
         
     public:
         Logic(View::UI* ui, Mod::Board* board)
@@ -27,7 +29,7 @@ namespace Controller//All related to logic
             _board = board;
         }
         
-        void fillBoard();
+        void fill_board();
         void doLogic();//program update
         void doDrawing();
     };
