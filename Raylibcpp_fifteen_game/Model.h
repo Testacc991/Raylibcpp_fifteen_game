@@ -31,20 +31,28 @@ namespace Mod//Everything related to data
         {
             //empty
         }
+        Cell(const Cell& cell) noexcept
+        {
+            this->number = cell.number;
+            this->exists = cell.exists;
+            this->pressed = cell.pressed;
+            this->cellsize = cell.cellsize;
+            this->position = cell.position;
+            this->numtext = cell.numtext;
+            this->rec = cell.rec;
+        }
+        
         Cell& operator=(const Cell& other) {
             if (this == &other) {
                 return *this;
             }
-
-            position = other.position;
-            cellsize = other.cellsize;
-            pressed = other.pressed;
-            exists = other.exists;
-            number = other.number;
-
+            //this->number = other.number;
+            //this->exists = other.exists;
+            this->pressed = other.pressed;
+            this->cellsize = other.cellsize;
+            this->position = other.position;
             return *this;
         }
-
     };
 
     class Board
@@ -64,8 +72,6 @@ namespace Mod//Everything related to data
         {
             //empty
         };
-        void return_cells();
-        void record_cells();
     };
 
 }
