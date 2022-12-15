@@ -34,15 +34,15 @@ void Controller::Logic::try_swap_cell16_near()
 {
     for (auto it = _board->cells.begin(); it != _board->cells.end(); ++it)
     {
-        Mod::Cell& empty = find_16cell();
-       if (abs(empty.position.x - it->position.x) + abs(empty.position.y - it->position.y)==_board->cellsize.x)
-       {
+       Mod::Cell& empty = find_16cell();
+       //if (abs(empty.position.x - it->position.x) + abs(empty.position.y - it->position.y)==_board->cellsize.x)
+       //{
             if (it->pressed)
             {
                 it->pressed = false;
                 swap(empty,*it);
             }
-       }
+       //}
     }
 }
 

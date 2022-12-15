@@ -46,11 +46,13 @@ namespace Mod//Everything related to data
             if (this == &other) {
                 return *this;
             }
-            //this->number = other.number;
+            this->number = other.number;
             //this->exists = other.exists;
             this->pressed = other.pressed;
             this->cellsize = other.cellsize;
             this->position = other.position;
+            this->rec.x = other.rec.x;
+            this->rec.y = other.rec.y;
             return *this;
         }
     };
