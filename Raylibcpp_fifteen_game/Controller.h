@@ -18,6 +18,7 @@ namespace Controller//All related to logic
         Mod::Cell& find_16cell();
         void try_swap_cell16_near();
         void swap(Mod::Cell& cell1, Mod::Cell& cell2);
+        //Functions to update
         //------------------------------------------------------------------
         void draw_board();
         void update_pointer();

@@ -6,7 +6,7 @@
 void View::UI::drawcell(Mod::Cell &cell)
 {
 		cell.rec.DrawLines(BLACK);
-		cell.numtext.Draw({ cell.position.x + 10,cell.position.y + 10 });
+		cell.numtext.Draw({ cell.position.x + 20,cell.position.y + 15 });
 }
 //
 //void View::UI::drawendgame(bool visibility,int &screenWidth, int& screenHeight)
