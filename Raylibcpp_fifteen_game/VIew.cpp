@@ -6,9 +6,9 @@ void View::View::draw_cells(std::vector<int>cells)
 {
     int height = 4;
     int width = 4;
-    for (int y = 0; y<height;y++)
+    for (int y = 0; y < height;y++)
     {
-        for (int x = 0; x <width; x++)
+        for (int x = 0; x < width; x++)
         {
             std::string currentNum = std::to_string(cells[y * width + x]);
             raylib::Color rec;

@@ -3,16 +3,7 @@
 #include <algorithm>
 #include <random>
 #include "Constants.h"
-//bool Controller::Logic::is_cell_pressed(raylib::Vector2 pointer, Mod::Cell& cell)
-//{
-//    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-//    {
-//        if (cell.rec.CheckCollision(pointer))
-//        {
-//            return true;
-//        }
-//    }
-//}
+#include <cmath>
 //
 //void Controller::Logic::check_pressed()//in doLogic
 //{
@@ -113,15 +104,48 @@
 //        }
 //    }
 //}
+int Controller::Logic::find16()
+{
+    int counter = 0;
+    for (auto it = _board->cells.begin(); it != _board->cells.end(); ++it)
+    {
+        if (*it == 16)
+        {
+            return counter;
+        }
+        counter++;
+    }
+}
+void Controller::Logic::swap(int index1,int index2)
+{
+    int tmp = _board->cells.at(index1);
+    _board->cells.at(index1) = _board->cells.at(index2);
+    _board->cells.at(index2) = tmp;
+}
+void Controller::Logic::on_input()
+{
+    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+    {
+        int x = GetMouseX();
+        int y = GetMouseY();
+        int tilex = floor((x + 100) / 100); 
+        int tiley = floor((y + 100) / 100);
+        int tile16x = find16() % 4;
+        int tile16y = (find16() - tile16x) / 4;
+        if (abs((tilex-1) - tile16x) + abs((tiley-1)-tile16y) == 1)
+        {
+        swap((tiley - 1) * 4 + (tilex - 1), find16());
+        }
+    }
+}
 
 void Controller::Logic::do_logic()
 {
-    //update_pointer();
+    on_input();
     //check_pressed();
 }
 void Controller::Logic::do_drawing()
 {
     //draw_board();
     _view->draw_cells(_board->cells);
-    //draw_win();
 }

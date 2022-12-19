@@ -19,29 +19,6 @@ namespace Mod//Everything related to data
             //empty
         };
     };
-    class Cell
-    {
-    public:
-        int number;
-        bool pressed;
-
-        raylib::Text numtext;
-        raylib::Rectangle rec;
-
-        Vector2 position;
-        
-        Cell(Vector2 position,bool pressed, int number) :
-            //Text and cell rectangle initialization
-            numtext(std::to_string(number), 80, BLACK),
-            rec(position, Constants::cellsize)
-        {
-            this->position = position;
-            this->pressed = pressed;
-            this->number = number;
-            this->position = position;
-        }
-    };
-
     class Board
     {
     public:

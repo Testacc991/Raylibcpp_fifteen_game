@@ -19,9 +19,10 @@ namespace Controller//All related to logic
             _gui = gui;
 
         }
-    //Methods
     private:
-        
+        int find16();
+        void swap(int index1, int index2);
+        void on_input();
     public:  
         void do_logic();//program update
         void do_drawing();
