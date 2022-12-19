@@ -1,19 +1,17 @@
 #pragma once
-#include "Vec2.h"
 #include <vector>
 #include "Model.h"
 
 namespace View //All related to interface
 {
-    class UI
+    class View
     {
        
     public:
 
-        void drawcell(Mod::Cell& cell);
+        void draw_cells(std::vector<int>cells);
 
-        /*void drawendgame(bool visibility, int& screenWidth, int& screenHeight);
+        void draw_solved_text(Mod::Gui& gui,bool visibility);
 
-        void drawrepeat(bool visibility, int& screenWidth, int& screenHeight);*/
     };
 }

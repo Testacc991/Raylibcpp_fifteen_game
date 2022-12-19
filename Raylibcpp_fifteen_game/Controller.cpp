@@ -2,6 +2,7 @@
 #include "Model.h"
 #include <algorithm>
 #include <random>
+#include "Constants.h"
 bool Controller::Logic::is_cell_pressed(raylib::Vector2 pointer, Mod::Cell& cell)
 {
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
@@ -12,78 +13,93 @@ bool Controller::Logic::is_cell_pressed(raylib::Vector2 pointer, Mod::Cell& cell
         }
     }
 }
+
 void Controller::Logic::check_pressed()//in doLogic
 {
     for (auto it = _board->cells.begin(); it != _board->cells.end(); ++it)
     {
-        if (is_cell_pressed(_board->pointer, *it))
+        if (is_cell_pressed(_gui->pointer, *it))
         {
             it->pressed = true;
-            try_swap_cell16_near();
+
         }
     }
 }
-Mod::Cell& Controller::Logic::find_16cell()
+
+void Controller::Logic::find_16cell()
 {
     for (auto it = _board->cells.begin(); it != _board->cells.end(); ++it)
     {
-        if (!it->exists) { return *it; }
-    }
-}
-void Controller::Logic::try_swap_cell16_near()
-{
-    for (auto it = _board->cells.begin(); it != _board->cells.end(); ++it)
-    {
-       Mod::Cell& empty = find_16cell();
-       if (abs(empty.position.x - it->position.x) + abs(empty.position.y - it->position.y)==_board->cellsize.x)
-       {
-            if (it->pressed)
-            {
-                
-                swap(empty,*it);
-            }
-       }
-       it->pressed = false;
+        if (*it==16) { return *it; }
     }
 }
 
-void Controller::Logic::swap(Mod::Cell& cell1, Mod::Cell& cell2)
+
+
+void Controller::Logic::swap(Mod::int& cell1, Mod::int& cell2)
 {
-    Mod::Cell temp(cell1);
-    cell1 = cell2;
-    cell2 = temp;
+     
+}
+
+int Controller::Logic::inversions(std::vector<Mod::Cell>& cells)
+{
+    int inv = 0;
+    for (int i = 0; i<_board->cells.size(); i++)
+    {
+        for (int j = i+1; j< _board->cells.size(); j++)
+        {
+            if (cells.at(i).number > cells.at(j).number && cells.at(j).number != 16)
+            {
+                inv++;
+            }
+        }
+    }
+    return inv;
+}
+
+bool Controller::Logic::is_solvable()
+{
     
+}
+
+void Controller::Logic::scramble()
+{   
+    std::default_random_engine engine(std::random_device{}());
+
+    std::shuffle(begin(_board->cells), end(_board->cells), engine);
 }
 
 void Controller::Logic::fill_board()
 {
-    int counter = 1;
-    for (float y = 0.0; y < _board->boardsize.y; y += _board->cellsize.y)
+    
+}
+
+bool Controller::Logic::check_win(std::vector<int>&cells)
+{
+    int temp = 0;
+    for (auto it = _board->cells.begin(); it != _board->cells.end(); ++it)
     {
-        for (float x = 0.0; x < _board->boardsize.x; x += _board->cellsize.x)
+        if (*it > temp)
         {
-            if (counter != 16)
-            {
-                _board->cells.push_back(
-                    Mod::Cell({ x,y },
-                        { _board->cellsize.x,_board->cellsize.y },
-                        true,
-                        false,
-                        counter));
-                counter++;
-            }
-            else
-            {
-                _board->cells.push_back(
-                    Mod::Cell({ x,y },
-                        { _board->cellsize.x,_board->cellsize.y },
-                        false,
-                        false,
-                        counter));
-                counter++;
-            }
-            
+            temp = *it;
         }
+        else
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+void Controller::Logic::draw_win()
+{
+    if (check_win(_board->cells))
+    {
+        _view->draw_solved_text(*_gui, true);
+    }
+    else
+    {
+        _view->draw_solved_text(*_gui, false);
     }
 }
 
@@ -91,24 +107,25 @@ void Controller::Logic::draw_board()
 {
     for (auto it = _board->cells.begin(); it != _board->cells.end(); ++it)
     {
-        if (it->exists)
+        if (*it!=16)
         {
-            _ui->drawcell(*it);
+            _view->draw_cell(it);
         }
     }
 }
 void Controller::Logic::update_pointer()
 {
-    _board->pointer.x = GetMouseX();
-    _board->pointer.y = GetMouseY();
+    _gui->pointer.x = GetMouseX();
+    _gui->pointer.y = GetMouseY();
 }
 
-void Controller::Logic::doLogic()
+void Controller::Logic::do_logic()
 {
     update_pointer();
     check_pressed();
 }
-void Controller::Logic::doDrawing()
+void Controller::Logic::do_drawing()
 {
     draw_board();
+    draw_win();
 }

@@ -142,11 +142,11 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="RAYLIB.cpp" />
-    <ClCompile Include="Vec2.h" />
     <ClCompile Include="VIew.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="View.h" />
   </ItemGroup>

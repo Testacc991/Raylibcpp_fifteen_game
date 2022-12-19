@@ -1,17 +1,24 @@
 #include "raylib-cpp.hpp"
 #include "Controller.h"
+#include "Constants.h"
 int main() {
     // Initialization
     //--------------------------------------------------------------------------------------
-    int screenWidth = 400;
-    int screenHeight = 400;
+    int screenWidth = Constants::screenWidth;
+    int screenHeight = Constants::screenHeight;
     raylib::Color textColor = raylib::Color::LightGray();
     raylib::Window window(screenWidth, screenHeight, "15 game");
     
-    View::UI ui;
-    Mod::Board board({ 10,10 }, { 400,400 },{100,100});
-    Controller::Logic logic(&ui, &board);
+    View::View draw;
+    Mod::Board board;
+    Mod::Gui gui;
+    Controller::Logic logic(&draw, &board, &gui);
     logic.fill_board();
+    logic.scramble();
+    //while (!logic.is_solvable())
+    //{
+    //   logic.scramble();
+    //}
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
     
@@ -21,7 +28,7 @@ int main() {
         // Logic
         //----------------------------------------------------------------------------------
         
-        logic.doLogic();
+        logic.do_logic();
        
         // Draw
         //----------------------------------------------------------------------------------
@@ -29,7 +36,7 @@ int main() {
         {
             window.ClearBackground(RAYWHITE);
             //textColor.DrawText("Congrats! You created your first window!", 190, 200, 20);
-            logic.doDrawing();
+            logic.do_drawing();
         }
         EndDrawing();
         //----------------------------------------------------------------------------------

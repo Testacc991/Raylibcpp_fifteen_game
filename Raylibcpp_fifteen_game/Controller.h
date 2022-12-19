@@ -6,32 +6,49 @@ namespace Controller//All related to logic
 {
     class Logic
     {
-        
+    //Fields
     private:
-        View::UI* _ui;
+        View::View* _view;
         Mod::Board* _board;
-        //Check if there pressed cell
+        Mod::Gui* _gui;
+    public:
+        Logic(View::View* view, Mod::Board* board, Mod::Gui* gui)
+        {
+            _view = view;
+            _board = board;
+            _gui = gui;
+
+        }
+    //Methods
+    private:
+        
+        //Functions to check pressed cell
+
         bool is_cell_pressed(raylib::Vector2 pointer, Mod::Cell& cell);
         void check_pressed();
-        //------------------------------------------------------------------
+
         //Functions to swap
-        Mod::Cell& find_16cell();
-        void try_swap_cell16_near();
-        void swap(Mod::Cell& cell1, Mod::Cell& cell2);
+
+        int& find_16cell();
+        void swap();
+
+        //Function to scramble
+        int inversions(std::vector<Mod::Cell>& cells);
+        
+        //Function to check win
+        
+        bool check_win(std::vector<int>& cells);
+
         //Functions to update
-        //------------------------------------------------------------------
+        void draw_win();
         void draw_board();
         void update_pointer();
-        
-    public:
-        Logic(View::UI* ui, Mod::Board* board)
-        {
-            _ui = ui;
-            _board = board;
-        }
-        
+    
+    public:  
+        bool is_solvable();
+        void scramble();
         void fill_board();
-        void doLogic();//program update
-        void doDrawing();
+        void do_logic();//program update
+        void do_drawing();
     };
 }
