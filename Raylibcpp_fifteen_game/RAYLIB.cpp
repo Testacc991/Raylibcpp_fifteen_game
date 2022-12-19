@@ -13,8 +13,8 @@ int main() {
     Mod::Board board;
     Mod::Gui gui;
     Controller::Logic logic(&draw, &board, &gui);
-    logic.fill_board();
-    logic.scramble();
+    // logic.fill_board();
+    //logic.scramble();
     //while (!logic.is_solvable())
     //{
     //   logic.scramble();

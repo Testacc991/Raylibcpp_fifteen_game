@@ -10,8 +10,14 @@ void View::View::draw_cells(std::vector<int>cells)
     {
         for (int x = 0; x <width; x++)
         {
-            int currentNum = cells[y * width + x];
-            DrawText(std::to_string(currentNum), x * width, y * width, 50);
+            std::string currentNum = std::to_string(cells[y * width + x]);
+            raylib::Color rec;
+            rec.DrawRectangleLines(x * 100, y * 100, 100, 100);
+            if (currentNum != "16")
+            {
+                raylib::Text text(currentNum, 100, BLACK);
+                text.Draw(x * 100 + 10, y * 100 + 10);
+            }
         }
     }
 }
@@ -23,11 +29,4 @@ void View::View::draw_solved_text(Mod::Gui& gui, bool visibility)
 		gui.youwintext.Draw({Constants::screenWidth/2-180,Constants::screenHeight/2-50});
 	}
 }
-//
-//void View::UI::drawrepeat(bool visibility, int& screenWidth, int& screenHeight)
-//{
-//	if (visibility)
-//	{
-//		DrawText("Repeat", screenWidth / 2, screenHeight / 2, 70, BLACK);
-//	}
-//}
+
