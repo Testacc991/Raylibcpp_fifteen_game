@@ -13,7 +13,7 @@ namespace Mod//Everything related to data
 
         Gui() : 
             pointer({ 0,0 }),
-            youwintext("You solve puzzle", 50, RED)
+            youwintext("You solve the puzzle", 50, GREEN)
             
         {
             //empty

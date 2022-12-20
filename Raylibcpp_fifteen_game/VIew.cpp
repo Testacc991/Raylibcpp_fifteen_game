@@ -11,12 +11,13 @@ void View::View::draw_cells(std::vector<int>cells)
         for (int x = 0; x < width; x++)
         {
             std::string currentNum = std::to_string(cells[y * width + x]);
-            raylib::Color rec;
-            rec.DrawRectangleLines(x * 100, y * 100, 100, 100);
+            
             if (currentNum != "16")
             {
-                raylib::Text text(currentNum, 100, BLACK);
-                text.Draw(x * 100 + 10, y * 100 + 10);
+                raylib::Color rec;
+                rec.DrawRectangleLines(x * 100, y * 100, 100, 100);
+                raylib::Text text(currentNum, 90, BLACK);
+                text.Draw(x * 100 + 15, y * 100 + 10);
             }
         }
     }

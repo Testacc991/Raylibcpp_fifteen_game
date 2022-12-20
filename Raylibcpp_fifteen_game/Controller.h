@@ -20,11 +20,16 @@ namespace Controller//All related to logic
 
         }
     private:
+        int inversions();
+        bool check_win();
+        void draw_win();
         int find16();
         void swap(int index1, int index2);
         void on_input();
     public:  
+        bool is_solvable();
         void do_logic();//program update
         void do_drawing();
+        void scramble();
     };
 }
