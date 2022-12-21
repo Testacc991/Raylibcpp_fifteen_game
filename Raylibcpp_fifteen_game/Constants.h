@@ -8,5 +8,5 @@ namespace Constants
 	static const int screenWidth = 400;
 	static const int screenHeight = 450;
 	static const int movex = 0;
-	static const int movey = 50;
+	static const int movey = 0;
 }

@@ -33,14 +33,14 @@ void View::View::draw_solved_text(Mod::Gui& gui, bool visibility)
 {
 	if (visibility)
 	{
-		gui.youwintext.Draw({Constants::screenWidth/2-200,5});
+		gui.youwintext.Draw({Constants::screenWidth/2-200,400});
 	}
 }
 void View::View::draw_unsolved_text(Mod::Gui& gui, bool visibility)
 {
     if (visibility)
     {
-        gui.yousolve.Draw({ Constants::screenWidth / 2 - 70,5 });
+        gui.yousolve.Draw({ Constants::screenWidth / 2 - 70,400});
     }
 }
 
