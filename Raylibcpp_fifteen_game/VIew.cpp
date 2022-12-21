@@ -4,8 +4,8 @@
 
 void View::View::draw_cells(std::vector<int>cells)
 {
-    int height = 4;
-    int width = 4;
+    int height = Constants::boardsize;
+    int width = Constants::boardsize;
     for (int y = 0; y < height;y++)
     {
         for (int x = 0; x < width; x++)
@@ -15,9 +15,15 @@ void View::View::draw_cells(std::vector<int>cells)
             if (currentNum != "16")
             {
                 raylib::Color rec;
-                rec.DrawRectangleLines(x * 100, y * 100, 100, 100);
+                rec.DrawRectangleLines(
+                    x * Constants::cellsize + Constants::movex,
+                    y * Constants::cellsize + Constants::movey,
+                    Constants::cellsize,
+                    Constants::cellsize
+                );
                 raylib::Text text(currentNum, 90, BLACK);
-                text.Draw(x * 100 + 15, y * 100 + 10);
+                text.Draw(x * Constants::cellsize + 15 + Constants::movex,
+                    y * Constants::cellsize + 10 + Constants::movey);
             }
         }
     }
@@ -27,7 +33,14 @@ void View::View::draw_solved_text(Mod::Gui& gui, bool visibility)
 {
 	if (visibility)
 	{
-		gui.youwintext.Draw({Constants::screenWidth/2-180,Constants::screenHeight/2-50});
+		gui.youwintext.Draw({Constants::screenWidth/2-200,5});
 	}
+}
+void View::View::draw_unsolved_text(Mod::Gui& gui, bool visibility)
+{
+    if (visibility)
+    {
+        gui.yousolve.Draw({ Constants::screenWidth / 2 - 70,5 });
+    }
 }
 

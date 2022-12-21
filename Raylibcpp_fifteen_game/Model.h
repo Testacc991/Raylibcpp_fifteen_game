@@ -9,12 +9,13 @@ namespace Mod//Everything related to data
     {
     public:
         raylib::Text youwintext;
+        raylib::Text yousolve;
         raylib::Vector2 pointer;
 
         Gui() : 
             pointer({ 0,0 }),
-            youwintext("You solve the puzzle", 50, GREEN)
-            
+            youwintext("You solve the puzzle", 45, GREEN),
+            yousolve("Solving",45,GRAY)        
         {
             //empty
         };

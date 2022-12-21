@@ -3,8 +3,10 @@
 namespace Constants
 {
 	//Sizes in pixels
-	static const raylib::Vector2 cellsize = { 100.0f,100.0f };//Size of cell width and height
-	static const raylib::Vector2 boardsize = { 400.0f,400.0f };//size of board width and height
+	static const int cellsize = 100;//Size of cell width and height
+	static const int boardsize = 4;//size of board width and height
 	static const int screenWidth = 400;
-	static const int screenHeight = 400;
+	static const int screenHeight = 450;
+	static const int movex = 0;
+	static const int movey = 50;
 }

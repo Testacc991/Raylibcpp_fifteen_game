@@ -13,5 +13,7 @@ namespace View //All related to interface
 
         void draw_solved_text(Mod::Gui& gui,bool visibility);
 
+        void draw_unsolved_text(Mod::Gui& gui, bool visibility);
+
     };
 }

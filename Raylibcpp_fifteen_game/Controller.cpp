@@ -34,13 +34,13 @@ int Controller::Logic::find16()
 bool Controller::Logic::is_solvable()
 {
     int index = find16();
-    int tile16x = index % 4;
-    int tile16y = (index - tile16x) / 4;
-        if(tile16y % 2 == 1 && inversions() % 2 == 0 )
+    int tile16x = index % Constants::boardsize;
+    int tile16y = (index - tile16x) / Constants::boardsize;
+        if(tile16y % 2 != 0 && inversions() % 2 == 0 )
         {
             return true;
         }    
-        if(tile16y % 2 == 0 && inversions() % 2 == 1)
+        if(tile16y % 2 == 0 && inversions() % 2 != 0)
         {
             return true;
         }
@@ -77,9 +77,11 @@ void Controller::Logic::draw_win()
     if (check_win())
     {
         _view->draw_solved_text(*_gui, true);
+        _view->draw_unsolved_text(*_gui, false);
     }
     else
     {
+        _view->draw_unsolved_text(*_gui, true);
         _view->draw_solved_text(*_gui, false);
     }
 }
@@ -97,13 +99,13 @@ void Controller::Logic::on_input()
         int index = find16();
         int x = GetMouseX();
         int y = GetMouseY();
-        int tilex = floor((x + 100) / 100); 
-        int tiley = floor((y + 100) / 100);
-        int tile16x = index % 4;
-        int tile16y = (index - tile16x) / 4;
+        int tilex = floor((x + Constants::cellsize) / Constants::cellsize);
+        int tiley = floor((y + Constants::cellsize) / Constants::cellsize);
+        int tile16x = index % Constants::boardsize;
+        int tile16y = (index - tile16x) / Constants::boardsize;
         if (abs((tilex-1) - tile16x) + abs((tiley-1)-tile16y) == 1)
         {
-        swap((tiley - 1) * 4 + (tilex - 1), index);
+        swap((tiley - 1) * Constants::boardsize + (tilex - 1), index);
         }
     }
 }
