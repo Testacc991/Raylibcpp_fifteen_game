@@ -6,26 +6,30 @@ namespace Controller//All related to logic
 {
     class Logic
     {
-        View::UI* _ui;
+    //Fields
+    private:
+        View::View* _view;
         Mod::Board* _board;
-        //Check if there pressed cell
-        int check();
-        //Change configuration
-        void changeConf();
-        //Revord configuration 
-        void recordConf();
-        //Check if configuration is correct
-        void checkConf();
-        
-        void updateboard();
-        void updatepointer();
+        Mod::Gui* _gui;
     public:
-        Logic(View::UI* ui, Mod::Board* board)
+        Logic(View::View* view, Mod::Board* board, Mod::Gui* gui)
         {
-            _ui = ui;
+            _view = view;
             _board = board;
+            _gui = gui;
+
         }
-        void fillBoard();
-        void doLogic();//program update
+    private:
+        int inversions();
+        bool check_win();
+        void draw_win();
+        int find16();
+        void swap(int index1, int index2);
+        void on_input();
+    public:  
+        bool is_solvable();
+        void do_logic();//program update
+        void do_drawing();
+        void scramble();
     };
 }

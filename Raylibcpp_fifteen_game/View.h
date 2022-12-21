@@ -1,24 +1,19 @@
 #pragma once
-#include "Vec2.h"
 #include <vector>
 #include "Model.h"
 
 namespace View //All related to interface
 {
-    class UI
+    class View
     {
+       
     public:
-        
-        bool return_pressed_cell(raylib::Rectangle pointer, Mod::Cell& cell);
 
-        bool return_repeat_is_pressed();
+        void draw_cells(std::vector<int>cells);
 
-        void drawcell(Mod::Cell& cell);
+        void draw_solved_text(Mod::Gui& gui,bool visibility);
 
-        void drawpointer(Mod::Board& board);
+        void draw_unsolved_text(Mod::Gui& gui, bool visibility);
 
-        void drawendgame(bool visibility, int& screenWidth, int& screenHeight);
-
-        void drawrepeat(bool visibility, int& screenWidth, int& screenHeight);
     };
 }

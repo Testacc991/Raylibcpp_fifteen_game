@@ -1,43 +1,46 @@
 #include "raylib-cpp.hpp"
 #include "View.h"
-#include "Vec2.h"
 #include <iostream>
-bool View::UI::return_pressed_cell(raylib::Rectangle pointer, Mod::Cell &cell)
-{
 
-	raylib::Vector2 ballPosition = GetMousePosition();
-	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-	{
-		if (pointer.CheckCollision(cell.rec))
-		{
-			return true;
-		}
-
-	}
-}
-void View::UI::drawcell(Mod::Cell &cell)
+void View::View::draw_cells(std::vector<int>cells)
 {
-		cell.rec.DrawLines(BLACK);
-		cell.numtext.Draw({ cell.position.x + 10,cell.position.y + 10 });
-}
-
-void View::UI::drawpointer(Mod::Board& board)
-{
-	board.pointer.Draw(BLACK);
-}
-
-void View::UI::drawendgame(bool visibility,int &screenWidth, int& screenHeight)
-{
-	if (visibility)
-	{
-		DrawText("Game over", screenWidth / 2, screenHeight / 2, 70, BLACK);
-	}
+    int height = Constants::boardsize;
+    int width = Constants::boardsize;
+    for (int y = 0; y < height;y++)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            std::string currentNum = std::to_string(cells[y * width + x]);
+            
+            if (currentNum != "16")
+            {
+                raylib::Color rec;
+                rec.DrawRectangleLines(
+                    x * Constants::cellsize + Constants::movex,
+                    y * Constants::cellsize + Constants::movey,
+                    Constants::cellsize,
+                    Constants::cellsize
+                );
+                raylib::Text text(currentNum, 90, BLACK);
+                text.Draw(x * Constants::cellsize + 15 + Constants::movex,
+                    y * Constants::cellsize + 10 + Constants::movey);
+            }
+        }
+    }
 }
 
-void View::UI::drawrepeat(bool visibility, int& screenWidth, int& screenHeight)
+void View::View::draw_solved_text(Mod::Gui& gui, bool visibility)
 {
 	if (visibility)
 	{
-		DrawText("Repeat", screenWidth / 2, screenHeight / 2, 70, BLACK);
+		gui.youwintext.Draw({Constants::screenWidth/2-200,5});
 	}
 }
+void View::View::draw_unsolved_text(Mod::Gui& gui, bool visibility)
+{
+    if (visibility)
+    {
+        gui.yousolve.Draw({ Constants::screenWidth / 2 - 70,5 });
+    }
+}
+
