@@ -72,17 +72,17 @@ bool Controller::Logic::check_win()
     return true;
 }
 
-void Controller::Logic::draw_win()
+void Controller::Logic::draw_win(raylib::Font& fontbm)
 {
     if (check_win())
     {
-        _view->draw_solved_text(*_gui, true);
-        _view->draw_unsolved_text(*_gui, false);
+        _view->draw_solved_text(*_gui, true, fontbm);
+        _view->draw_unsolved_text(*_gui, false, fontbm);
     }
     else
     {
-        _view->draw_unsolved_text(*_gui, true);
-        _view->draw_solved_text(*_gui, false);
+        _view->draw_unsolved_text(*_gui, true, fontbm);
+        _view->draw_solved_text(*_gui, false, fontbm);
     }
 }
 
@@ -113,11 +113,9 @@ void Controller::Logic::on_input()
 void Controller::Logic::do_logic()
 {
     on_input();
-    //check_pressed();
 }
-void Controller::Logic::do_drawing()
+void Controller::Logic::do_drawing(raylib::Font& fontbm)
 {
-    //draw_board();
-    draw_win();
-    _view->draw_cells(_board->cells);
+    draw_win(fontbm);
+    _view->draw_cells(_board->cells,fontbm);
 }

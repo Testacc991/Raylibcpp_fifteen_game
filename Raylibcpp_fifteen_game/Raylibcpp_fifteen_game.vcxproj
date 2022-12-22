@@ -167,9 +167,6 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="View.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Raylibcpp_fifteen_game.rc" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -8,16 +8,18 @@ int main() {
     int screenHeight = Constants::screenHeight;
     raylib::Color textColor = raylib::Color::LightGray();
     raylib::Window window(screenWidth, screenHeight, "15 game");
+
+    raylib::Font fontbm("resources/TIMESBD.TTF", 128, 0, 100);
     
     View::View draw;
     Mod::Board board;
     Mod::Gui gui;
     Controller::Logic logic(&draw, &board, &gui);
-    logic.scramble();
+    /*logic.scramble();
     while (!logic.is_solvable())
     {
        logic.scramble();
-    }
+    }*/
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
     
@@ -35,7 +37,8 @@ int main() {
         {
             window.ClearBackground(RAYWHITE);
             //textColor.DrawText("Congrats! You created your first window!", 190, 200, 20);
-            logic.do_drawing();
+            
+            logic.do_drawing(fontbm);
         }
         EndDrawing();
         //----------------------------------------------------------------------------------

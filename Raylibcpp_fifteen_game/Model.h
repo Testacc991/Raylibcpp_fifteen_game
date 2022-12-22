@@ -8,14 +8,10 @@ namespace Mod//Everything related to data
     class Gui
     {
     public:
-        raylib::Text youwintext;
-        raylib::Text yousolve;
         raylib::Vector2 pointer;
 
         Gui() : 
-            pointer({ 0,0 }),
-            youwintext("You solve the puzzle", 45, GREEN),
-            yousolve("Solving",45,GRAY)        
+            pointer({ 0,0 })        
         {
             //empty
         };

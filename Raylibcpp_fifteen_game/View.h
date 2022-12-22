@@ -9,11 +9,11 @@ namespace View //All related to interface
        
     public:
 
-        void draw_cells(std::vector<int>cells);
+        void draw_cells(std::vector<int>cells, raylib::Font&fontbm);
 
-        void draw_solved_text(Mod::Gui& gui,bool visibility);
+        void draw_solved_text(Mod::Gui& gui,bool visibility, raylib::Font& fontbm);
 
-        void draw_unsolved_text(Mod::Gui& gui, bool visibility);
+        void draw_unsolved_text(Mod::Gui& gui, bool visibility, raylib::Font& fontbm);
 
     };
 }
