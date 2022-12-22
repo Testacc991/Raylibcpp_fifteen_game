@@ -1,18 +1,22 @@
 #include "raylib-cpp.hpp"
 #include "View.h"
 #include <iostream>
-
+#include <regex>
 void View::View::draw_cells(std::vector<int>cells,raylib::Font& fontbm)
 {
     int height = Constants::boardsize;
     int width = Constants::boardsize;
-    
+    const std::regex base_regex("1|2|3|4|5|6|7|8|9");
+    std::smatch base_match;
     for (int y = 0; y < height;y++)
     {
         for (int x = 0; x < width; x++)
         {
             std::string currentNum = std::to_string(cells[y * width + x]);
-            
+            if (std::regex_match(currentNum, base_match, base_regex))
+            {
+                currentNum = " " + currentNum;
+            }
             if (currentNum != "16")
             {
                 raylib::Color rec;
