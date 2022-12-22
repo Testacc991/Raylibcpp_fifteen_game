@@ -15,11 +15,11 @@ int main() {
     Mod::Board board;
     Mod::Gui gui;
     Controller::Logic logic(&draw, &board, &gui);
-    /*logic.scramble();
+    logic.scramble();
     while (!logic.is_solvable())
     {
        logic.scramble();
-    }*/
+    }
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
     
