@@ -36,11 +36,11 @@ bool Controller::Logic::is_solvable()
     int index = find16();
     int tile16x = index % Constants::boardsize;
     int tile16y = (index - tile16x) / Constants::boardsize;
-        if(tile16y % 2 != 0 && inversions() % 2 == 0 )
+        if(tile16y % 2 == 1 && inversions() % 2 == 0 )
         {
             return true;
         }    
-        if(tile16y % 2 == 0 && inversions() % 2 != 0)
+        if(tile16y % 2 == 0 && inversions() % 2 == 1)
         {
             return true;
         }
