@@ -1,6 +1,7 @@
 #include "raylib-cpp.hpp"
 #include "Controller.h"
 #include "Constants.h"
+#include <time.h>
 int main() {
     // Initialization
     //--------------------------------------------------------------------------------------
@@ -10,16 +11,17 @@ int main() {
     raylib::Window window(screenWidth, screenHeight, "15 game");
 
     raylib::Font fontbm("resources/TIMESBD.TTF", 128, 0, 100);
-    
+    srand((unsigned int)time(NULL));
+
     View::View draw;
     Mod::Board board;
     Mod::Gui gui;
     Controller::Logic logic(&draw, &board, &gui);
     logic.scramble();
-    while (!logic.is_solvable())
+    /*while (!logic.is_solvable())
     {
        logic.scramble();
-    }
+    }*/
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
     

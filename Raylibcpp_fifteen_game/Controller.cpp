@@ -4,21 +4,7 @@
 #include <random>
 #include "Constants.h"
 #include <cmath>
-int Controller::Logic::inversions()
-{
-    int inv = 0;
-    for (int i = 0; i<_board->cells.size(); i++)
-    {
-        for (int j = i+1; j< _board->cells.size(); j++)
-        {
-            if (_board->cells.at(i) > _board->cells.at(j) && _board->cells.at(j) != 16)
-            {
-                inv++;
-            }
-        }
-    }
-    return inv;
-}
+
 int Controller::Logic::find16()
 {
     int counter = 0;
@@ -31,27 +17,33 @@ int Controller::Logic::find16()
         counter++;
     }
 }
-bool Controller::Logic::is_solvable()
-{
-    int index = find16();
-    int tile16x = index % Constants::boardsize;
-    int tile16y = (index - tile16x) / Constants::boardsize;
-        if(tile16y % 2 == 1 && inversions() % 2 == 0 )
-        {
-            return true;
-        }    
-        if(tile16y % 2 == 0 && inversions() % 2 == 1)
-        {
-            return true;
-        }
-    return false;
-}
 
 void Controller::Logic::scramble()
-{   
-    std::default_random_engine engine(std::random_device{}());
-
-    std::shuffle(begin(_board->cells), end(_board->cells), engine);
+{  
+    int inversions = rand() % 1000;
+    for (int i = 0; i < inversions; i++)
+    {
+        int check = rand() % 4 + 1;
+        int tile16index = find16();
+        int tile16x = tile16index % Constants::boardsize;
+        int tile16y = (tile16index - tile16x) / Constants::boardsize;
+        if ((tile16x+1) < Constants::boardsize && check==1)
+        {
+            swap(tile16y * Constants::boardsize + (tile16x + 1), tile16index);
+        }
+        else if ((tile16x - 1) >= 0 && check == 2)
+        {
+            swap(tile16y * Constants::boardsize + (tile16x - 1), tile16index);
+        }
+        else if ((tile16y + 1) < Constants::boardsize && check == 3)
+        {
+            swap((tile16y + 1) * Constants::boardsize + tile16x, tile16index);
+        }
+        else if ((tile16y - 1) >= 0 && check == 4)
+        {
+            swap((tile16y - 1) * Constants::boardsize + tile16x, tile16index);
+        }
+    }
 }
 
 
